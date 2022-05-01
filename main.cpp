@@ -2,11 +2,10 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "ArgumentManager.h"
 #include "record.h"
 using namespace std;
-
-// worked with Joseph Jophy, Brody Pen, and Maximus Furtado
  
 int main(int argc, char* argv[])
 {
@@ -19,11 +18,14 @@ int main(int argc, char* argv[])
     ifstream sort(sfile);
     output << "";
 
-    vector<string>sortData;
     string s, data, first, last, dob, gpa, id;
     record object;
-  
+
     while(getline(input, data)) {
+      if(data == " " || data == "\r" || data == "\t" || data == "\n"
+        || data.empty()) {
+        continue;
+      }
       if(data[0] == 'd') {
         object.deleteatbeg(data.substr(7,7));
         continue;
@@ -37,19 +39,16 @@ int main(int argc, char* argv[])
       dob = data.substr(data.find(":") + 1, data.find(',') - 4);
       data = data.substr(data.find(',') + 1);
       gpa = data.substr(data.find("gpa:") + 1, 7);
-      //gpa = data.substr(data.find("gpa:") + 4, data.find(',') - 4);
       data = data.substr(data.find(',') + 1);
       data = "";
       object.addatbeg(id, first, last, dob, gpa);
     }
-    while(!sort.eof()) {
-      getline(sort, s);
-      if(s.empty()) {
-        continue;
+    object.bubbleSort("id");
+    while(sort >> s) {
+      if(!s.empty()) {
+        object.bubbleSort(s);
       }
-      sortData.push_back(s);
     }
-    object.bubbleSort(sortData);
     object.print(output);
   
   return 0;
