@@ -65,7 +65,7 @@ void record::print(ostream &out) {
     cu = cu->next;
   }
 }
-void record::bubbleSort(vector<string> s) {
+void record::bubbleSort(string s) {
 
     info *cu1 = new info;
     info *cu2 = new info;
@@ -82,58 +82,36 @@ void record::bubbleSort(vector<string> s) {
               swapCount = 1;
             }
         }
-        for(int i = 0; i < s.size(); i++) {
-          if(s[i] == "id") {
+          if(s == "id") {
             if(cu1->id > cu2->id) {
               swap(cu1, cu2);
               swapCount = 1;
             }
           }
-          if(s[i] == "DOB") {
+          if(s == "DOB") {
             if(cu1->dob > cu2->dob) {
               swap(cu1, cu2);
               swapCount = 1;
             }
-            if(cu1->dob == cu2->dob) {
-              if(cu1->id > cu2->id) {
-                swap(cu1, cu2);
-              }
-            }
           }
-          if(s[i] == "first") {
+          if(s == "first") {
             if(cu1->first > cu2->first) {
               swap(cu1, cu2);
               swapCount = 1;
             }
-            if(cu1->first == cu2->first) {
-              if(cu1->id > cu2->id) {
-                swap(cu1, cu2);
-              }
-            }
           }
-          if(s[i] == "last") {
+          if(s == "last") {
             if(cu1->last > cu2->last) {
               swap(cu1, cu2);
               swapCount = 1;
             }
-            if(cu1->last == cu2->last) {
-              if(cu1->id > cu2->id) {
-                swap(cu1, cu2);
-              }
-            }
           }
-          if(s[i] == "GPA") {
+          if(s == "GPA") {
             if(cu1->gpa > cu2->gpa) {
               swap(cu1, cu2);
               swapCount = 1;
             }
-            if(cu1->gpa == cu2->gpa) {
-              if(cu1->id > cu2->id) {
-                swap(cu1, cu2);
-              }
-            }
           }
-        }
         cu1 = cu2;
         cu2 = cu2->next;
       }
