@@ -27,6 +27,6 @@ public:
       void addatbeg(string, string, string, string, string);
       void print(ostream &out);
       void deleteatbeg(string);
-      void bubbleSort(vector<string>);
+      void bubbleSort(string);
       void swap(info *a, info *b);
 };
